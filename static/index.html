@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YT Transcript Grabber</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-top">
+        <div class="logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="#FF0000"/>
+            <polygon points="13,10 24,16 13,22" fill="white"/>
+          </svg>
+          <span>Transcript<strong>Grab</strong></span>
+        </div>
+        <div class="header-controls">
+          <button id="themeToggleBtn" class="btn-icon-lg" title="Toggle light/dark mode">🌙</button>
+        </div>
+      </div>
+      <p class="tagline">Free YouTube transcript extractor — no signup, no fluff.</p>
+    </header>
+
+    <!-- SEARCH BAR -->
+    <main class="main">
+      <div class="search-card">
+        <div class="input-row">
+          <input
+            type="text"
+            id="urlInput"
+            placeholder="Paste YouTube URL here..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <select id="langSelect" title="Language">
+            <option value="en">EN</option>
+          </select>
+          <button id="fetchBtn" class="btn-primary">Get Transcript</button>
+        </div>
+        <div id="errorMsg" class="error-msg hidden"></div>
+      </div>
+
+      <!-- RESULTS -->
+      <div id="resultSection" class="result-section hidden">
+
+        <!-- Meta bar -->
+        <div class="meta-bar">
+          <div class="meta-info">
+            <span id="metaLang" class="badge"></span>
+            <span id="metaWords" class="meta-text"></span>
+            <span id="metaReadTime" class="meta-text"></span>
+            <span id="metaAuto" class="badge badge-auto hidden">Auto-generated</span>
+          </div>
+          <div class="meta-actions">
+            <button id="sideBySideBtn" class="btn-secondary">⬛ Video Sync</button>
+            <button id="toggleViewBtn" class="btn-secondary">📄 Paragraphs</button>
+            <button id="copyBtn" class="btn-secondary">📋 Copy</button>
+            <div class="dropdown">
+              <button id="downloadBtn" class="btn-secondary">⬇ Export ▾</button>
+              <div id="downloadMenu" class="dropdown-menu hidden">
+                <button id="downloadTxt" class="dropdown-item">📄 TXT</button>
+                <button id="downloadSrt" class="dropdown-item">🎬 SRT (subtitles)</button>
+                <button id="downloadPdf" class="dropdown-item">📑 PDF</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Toolbar: search + font size + auto-scroll -->
+        <div class="toolbar">
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="🔍 Search transcript..." />
+            <span id="searchCount" class="search-count hidden"></span>
+            <button id="searchPrev" class="btn-icon" title="Previous">↑</button>
+            <button id="searchNext" class="btn-icon" title="Next">↓</button>
+            <button id="clearSearch" class="btn-icon" title="Clear">✕</button>
+          </div>
+          <div class="font-controls">
+            <button id="fontDecBtn" class="btn-icon" title="Decrease font size">A-</button>
+            <button id="fontIncBtn" class="btn-icon" title="Increase font size">A+</button>
+            <button id="autoScrollBtn" class="btn-icon active" title="Auto-scroll to current segment">↕ Sync</button>
+          </div>
+        </div>
+
+        <!-- Side-by-side container -->
+        <div id="sideBySideContainer" class="side-by-side-container hidden">
+          <div class="video-panel">
+            <div id="ytPlayerContainer">
+              <div id="ytPlayer"></div>
+            </div>
+          </div>
+          <div class="transcript-panel">
+            <div id="transcriptContainerSide" class="transcript-container transcript-container--side">
+              <div id="transcriptOutputSide" class="transcript-output"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Normal transcript display -->
+        <div id="transcriptContainer" class="transcript-container">
+          <div id="transcriptOutput" class="transcript-output"></div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Made with ❤️ — Free forever. No ads. No tracking.</p>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="main.js"></script>
+</body>
+</html>
