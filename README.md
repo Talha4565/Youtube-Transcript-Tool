@@ -1,73 +1,92 @@
-# 🎬 YouTube Transcript Tool
+# TranscriptGrab — Free YouTube Transcript Tool
 
-> **Free, instant YouTube transcript extractor — no signup, no database, no fluff.**
+Extract, search, and download YouTube video transcripts instantly.
+No signup. No ads. No cost. Open source.
 
-Paste any YouTube URL and get a clean, readable transcript in seconds. Built for researchers, students, content creators, and developers who need transcripts fast.
+🔗 **Live:** https://youtube-transcript-tool.onrender.com/
 
 ---
 
-## ✨ Features
+## Why TranscriptGrab?
 
-- 🔗 **Paste any YouTube URL** → get a clean transcript instantly
-- 🌙☀️ **Dark / Light theme** toggle (saved to localStorage)
-- 📺 **Side-by-side video sync** — watch the video while the transcript highlights the current spoken segment in real time
-- 🔍 **Search with highlighting** — find any word, jump to prev/next match
-- 📄 **Paragraph & Segment views** with clickable timestamps
-- **A- / A+** Font size controls (saved to localStorage)
-- ⏳ **Reading time estimate**
-- 📋 **Copy to clipboard** in one click
-- ⬇️ **Export as TXT, SRT (subtitles), or PDF**
-- 🌐 **Multi-language support** — auto-detects all available transcript languages
-- ⚡ **In-memory LRU caching** — repeat requests are instant
-- 🔒 **Rate limiting** — protected against abuse (10 req/min per IP)
-- 📱 **Fully responsive** — works on mobile
+| Feature | TranscriptGrab | YouTube Built-in | Tactiq | YouTubeTranscript.com |
+|---|---|---|---|---|
+| No signup required | ✅ | ✅ | ❌ | ✅ |
+| Side-by-side video sync | ✅ | ❌ | ❌ | ❌ |
+| Search with highlighting | ✅ | ❌ | ❌ | ❌ |
+| Export as TXT | ✅ | ❌ | ✅ | ✅ |
+| Export as SRT | ✅ | ❌ | ✅ | ❌ |
+| Export as PDF | ✅ | ❌ | ❌ | ❌ |
+| No ads | ✅ | ✅ | ❌ | ❌ |
+| Open source | ✅ | ❌ | ❌ | ❌ |
+| Multi-language | ✅ | ✅ | ✅ | ✅ |
+
+---
+
+## Features
+
+- **Instant extraction** — Paste any YouTube URL, get transcript in under 3 seconds
+- **Side-by-side mode** — Video plays on left, transcript scrolls on right, synced in real time
+- **Search** — Find any word in the transcript with highlighting and match navigation
+- **Multiple exports** — Download as TXT, SRT (subtitle file), or PDF
+- **Multi-language** — Supports any language the video has captions for
+- **Dark/Light theme** — Toggle based on preference
+- **No account needed** — Zero friction, paste and go
+- **No ads** — Clean, distraction-free interface
+
+---
+
+## Use Cases
+
+- 🎓 **Students:** Extract searchable notes from lecture videos
+- 🎬 **Content creators:** Research competitor videos quickly
+- 🔬 **Researchers:** Quote specific parts of video interviews
+- 📰 **Journalists:** Reference video sources accurately
+- 💻 **Developers:** Extract video text data programmatically
+- 📖 **Accessibility:** Read videos instead of watching them
+
+---
+
+## Tech Stack
+
+- Python 3.11 + Flask
+- youtube-transcript-api
+- ReportLab (PDF generation)
+- Vanilla HTML/CSS/JS frontend
+- Docker + Gunicorn
+- Deployed on Render.com
+
+---
 
 ## Run Locally
 
 ```bash
+git clone https://github.com/Talha4565/Youtube-Transcript-Tool.git
+cd Youtube-Transcript-Tool
 pip install -r requirements.txt
 python app.py
+# Open http://localhost:5000
 ```
 
-Open http://localhost:5000
+---
 
-## Deploy to Render
+## API Endpoints
 
-1. Push this folder to a GitHub repo
-2. Go to https://render.com → New Web Service
-3. Connect your repo
-4. Render auto-detects `render.yaml` — just click Deploy
-
-## 🛠️ Tech Stack
-
-| Layer | Tech |
-|---|---|
-| Backend | Python 3.11 + Flask |
-| Transcript | youtube-transcript-api v1.x |
-| PDF Export | ReportLab |
-| Rate Limiting | flask-limiter |
-| Frontend | Vanilla JS, HTML, CSS (no frameworks) |
-| Video Sync | YouTube IFrame API |
-| Caching | In-memory LRU (thread-safe) |
-| Production | Gunicorn + Render.com |
-
-## 🚀 Deploy to Render (Free)
-
-1. Fork or clone this repo
-2. Go to [render.com](https://render.com) → **New → Web Service**
-3. Connect your GitHub repo
-4. Render auto-detects `render.yaml` — click **Deploy**
-5. Your app is live in ~2 minutes at `https://youtube-transcript-tool.onrender.com`
-
-## 📄 API Endpoints
-
-| Method | Endpoint | Description |
+| Endpoint | Method | Description |
 |---|---|---|
-| POST | `/api/transcript` | Fetch transcript (10/min rate limit) |
-| POST | `/api/languages` | List available languages (20/min) |
-| POST | `/api/export/srt` | Download as SRT subtitle file |
-| POST | `/api/export/pdf` | Download as formatted PDF |
+| `/api/transcript` | POST | Extract transcript for a YouTube URL |
+| `/api/languages` | POST | List available languages for a video |
+| `/api/export/srt` | POST | Download transcript as SRT file |
+| `/api/export/pdf` | POST | Download transcript as PDF |
 
-## 📜 License
+---
 
-MIT — free to use, modify, and deploy.
+## License
+
+MIT — Use it however you want.
+
+---
+
+## Author
+
+Built by [Talha](https://github.com/Talha4565) — open to feedback and contributions.

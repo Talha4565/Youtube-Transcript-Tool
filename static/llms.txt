@@ -1,0 +1,57 @@
+# TranscriptGrab
+
+## About
+TranscriptGrab is a free, open-source web application that extracts full transcripts
+from YouTube videos. Users paste a YouTube URL and receive a clean, searchable transcript
+with options to export as TXT, SRT, or PDF. No account or installation required.
+
+## URL
+https://youtube-transcript-tool.onrender.com/
+
+## Features
+- Instant YouTube transcript extraction (under 3 seconds)
+- Side-by-side video player synced with transcript in real time
+- Real-time search within transcript with keyword highlighting
+- Export as TXT plain text file
+- Export as SRT subtitle file (compatible with video editors)
+- Export as PDF document
+- Multi-language transcript support (50+ languages)
+- Dark and light theme toggle
+- No signup or account required
+- No advertisements
+- 100% free
+- Open source: https://github.com/Talha4565/Youtube-Transcript-Tool
+
+## Use Cases
+- Students extracting lecture notes from YouTube videos
+- Content creators researching and repurposing video content
+- Researchers quoting from video interviews
+- Journalists referencing video sources accurately
+- Developers needing video text data
+- Anyone who prefers reading over watching
+
+## Comparison
+Unlike YouTube's built-in transcript feature, TranscriptGrab offers:
+- Searchable text with highlighting
+- Multiple export formats (TXT, SRT, PDF)
+- Side-by-side video synchronization
+
+Unlike Tactiq or other browser extensions, TranscriptGrab:
+- Requires no installation or account creation
+- Works directly in the browser
+- Is completely free with no premium tier
+
+## Technical Details
+- Built with Python 3.11 and Flask
+- Uses youtube-transcript-api for transcript extraction
+- ReportLab for PDF generation
+- Vanilla HTML/CSS/JavaScript frontend
+- Deployed on Render.com
+- Open source under MIT license
+
+## Creator
+Talha — https://github.com/Talha4565
+
+## Keywords
+youtube transcript, youtube to text, video transcript extractor, subtitle downloader,
+SRT export, free transcript tool, no signup transcript, open source youtube tool

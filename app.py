@@ -21,9 +21,40 @@ limiter = Limiter(
 
 cache = LRUCache(maxsize=100)
 
+# ── Security headers ──────────────────────────────────────────────────────────
+@app.after_request
+def add_security_headers(response):
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'SAMEORIGIN'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    return response
+
+# ── Static SEO / GEO files ────────────────────────────────────────────────────
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory('static', 'robots.txt', mimetype='text/plain')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('static', 'sitemap.xml', mimetype='application/xml')
+
+@app.route('/llms.txt')
+def llms_txt():
+    return send_from_directory('static', 'llms.txt', mimetype='text/plain')
+
 @app.route('/')
 def index():
     return send_from_directory('static', 'index.html')
+
+# ── Error handlers ────────────────────────────────────────────────────────────
+@app.errorhandler(404)
+def not_found(e):
+    return send_from_directory('static', 'index.html'), 404
+
+@app.errorhandler(500)
+def server_error(e):
+    return jsonify({'error': 'Something went wrong on our end. Please try again.'}), 500
 
 @app.errorhandler(429)
 def rate_limit_exceeded(e):
